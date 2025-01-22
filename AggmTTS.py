@@ -23,22 +23,41 @@ def aggmtts(words_str):
     audio_dir = "audio"
     words_str = ''.join(e for e in words_str if e.isalnum() or e.isspace()).lower()
 
+    word_buffer = []
     for char in words_str:
-        if char.isdigit():  
+        if char.isdigit():
+            if word_buffer:
+                word_file = ''.join(word_buffer) + ".wav"
+                file_path = os.path.join(audio_dir, word_file)
+                if os.path.exists(file_path):
+                    play_audio(file_path)
+                else:
+                    print(f"Audio file for word '{word_file}' not found: {file_path}")
+                word_buffer = []
             file_path = os.path.join(audio_dir, f"{char}.wav")
             if os.path.exists(file_path):
                 play_audio(file_path)
             else:
                 print(f"Audio file for '{char}' not found: {file_path}")
         elif char.isalpha():
-            file_path = os.path.join(audio_dir, f"{char}.wav")
-            if os.path.exists(file_path):
-                play_audio(file_path)
-            else:
-                print(f"Audio file for '{char}' not found: {file_path}")
+            word_buffer.append(char)
         elif char.isspace():
-            continue
+            if word_buffer:
+                word_file = ''.join(word_buffer) + ".wav"
+                file_path = os.path.join(audio_dir, word_file)
+                if os.path.exists(file_path):
+                    play_audio(file_path)
+                else:
+                    print(f"Audio file for word '{word_file}' not found: {file_path}")
+                word_buffer = []
         else:
-            print(f"Invalid character ignored: {char}")
+            if word_buffer:
+                word_file = ''.join(word_buffer) + ".wav"
+                file_path = os.path.join(audio_dir, word_file)
+                if os.path.exists(file_path):
+                    play_audio(file_path)
+                else:
+                    print(f"Audio file for word '{word_file}' not found: {file_path}")
+                word_buffer = []
 
-aggmtts("!123")
+aggmtts("like a lot and things !123")
