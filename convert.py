@@ -5,7 +5,7 @@ import re
 
 os.makedirs('audio', exist_ok=True)
 
-audio_file = 'sasuke.mp4'
+audio_file = 'voice_audio.mp4'
 audio = AudioSegment.from_file(audio_file)
 
 model = whisper.load_model("small")
