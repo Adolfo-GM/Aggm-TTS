@@ -60,5 +60,5 @@ def aggmtts(words_str):
                     print(f"Audio file for word '{word_file}' not found: {file_path}")
                 word_buffer = []
 
-aggmtts("sputtering of those who do no know hatred.")
+aggmtts("It is the useless sputtering of those who do no know hatred.")
 
