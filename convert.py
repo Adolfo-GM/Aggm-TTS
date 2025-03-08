@@ -21,4 +21,4 @@ for segment in result['segments']:
         end = int(word['end'] * 1000)
         word_audio = audio[start:end]
         safe_filename = clean_filename(word_text)
-        word_audio.export(f"audio/{safe_filename}.wav", format="wav")
+        word_audio.export(f"audio/{safe_filename}.m4a", format="m4a")
